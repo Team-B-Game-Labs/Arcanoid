@@ -21,11 +21,11 @@ public class LevelManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        BlockGray.OnBrickDestroyed += LevelChanger;
+        Brick.OnBrickDestroyed += LevelChanger;
     }
     private void OnDisable()
     {
-        BlockGray.OnBrickDestroyed -= LevelChanger;
+        Brick.OnBrickDestroyed -= LevelChanger;
     }
 
     private void LevelChanger()

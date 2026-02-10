@@ -4,14 +4,14 @@ public class LevelManager : MonoBehaviour
 {
     private int totalBlock;
     private int currentBlock;
-    public List<GameObject> Level = new List<GameObject>();
+    [SerializeField] List<GameObject> Level = new List<GameObject>();
     private GameObject levelSelected;
     private int bossLevel;
 
 
     private void Start()
     {
-        bossLevel = 1;
+        bossLevel = 0;
         currentBlock = totalBlock;
         if (Level.Count > 0)
         {
@@ -37,5 +37,12 @@ public class LevelManager : MonoBehaviour
             levelSelected.SetActive(true);
             bossLevel++;
         }
+        if (currentBlock == 0 && bossLevel == 3)
+        {
+            //Caricare nuova scena per boss
+            //Creare variabili per aggiunta delle scene, 1 -> 3
+
+        }
+        
     }
 }

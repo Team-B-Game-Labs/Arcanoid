@@ -1,62 +1,81 @@
 using System.Collections;
 
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+
+
 using System;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
-public class Ball : MonoBehaviour
+using Unity.VisualScripting;
+
+
+
+public class Ball : MonoBehaviour, IBrick
 {
     [SerializeField] private float force = 5.0f;
     [SerializeField] GameObject launchPivot;
-    [SerializeField] public Vector3 velocity;
-    public float speed;
+    [SerializeField] float targetSpeed = 8f;
+    public int ballDamage;
+    public Vector3 velocity;
+    public float ballSpeed;
     Rigidbody rb;
-    Vector3 startPos;
+
+
     Vector3 newDirection;
     Vector3 lastVelocity;
+    Brick brick;
+
+
+    [Header("LauncherArrow")]
+    [SerializeField] float rotationSpeed = 10f;
+    public float maxAngle;
+
+
+
 
     //public static event Action <Vector2> OnMouseClick;
 
-    
     bool manualBounceActive;
-    bool startLaunchActive;
+
+    private void Awake()
+    {
+        brick = GetComponent<Brick>();
+    }
     private void Start()
     {
-
         manualBounceActive = false;
-        startLaunchActive = false;
-        startPos = transform.position;
+
         rb = GetComponent<Rigidbody>();
         velocity = rb.linearVelocity;
+
     }
     private void Update()
     {
-        speed = rb.linearVelocity.magnitude; //per vedere la speed in inspector
+        ballSpeed = rb.linearVelocity.magnitude; //per vedere la speed in inspector
         lastVelocity = rb.linearVelocity;
 
-        ////gestione mouseClick
-        //Vector3 clickPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-
-        //clickPos = cam.ScreenToWorldPoint(Input.mousePosition);
-        //Debug.DrawRay(Camera.main.transform.position, clickPos, Color.orange);
-
-        if (Input.GetKey(KeyCode.Space) /*&& GameManager.instance.status == GameStatus.GamePaused */)
+       
+        if (launchPivot != null)
         {
-            StartCoroutine(LaunchDirection());
-            Debug.Log("LaunchDirection");
-            
-
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            Launch();
-            launchPivot.SetActive(false);
-            Destroy(launchPivot);
-            /* GameManager.instance.status = GameStatus.GameRunning; */
 
 
+
+            if (Input.GetKey(KeyCode.Space) /*&& GameManager.instance.status == GameStatus.GamePaused */)
+            {
+                StartCoroutine(LaunchDirection());
+                Debug.Log("LaunchDirection");
+
+
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                StopAllCoroutines();
+                Launch();
+                launchPivot.SetActive(false);
+                Destroy(launchPivot);
+                /* GameManager.instance.status = GameStatus.GameRunning; */
+
+
+
+            }
         }
 
 
@@ -65,7 +84,7 @@ public class Ball : MonoBehaviour
         {
             manualBounceActive = true;
             ClickRaycast.instance.OnClickMove();
-            newDirection = ClickRaycast.instance.hitPos - transform.position;
+            newDirection = ClickRaycast.instance.hitPos - ClickRaycast.instance.transform.position;
 
             Debug.Log(newDirection);
 
@@ -74,6 +93,12 @@ public class Ball : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        var v = rb.linearVelocity;
+        if (v.sqrMagnitude > 0.0001f)
+            rb.linearVelocity = v.normalized * targetSpeed;
+    }
     public void Launch()
     {
 
@@ -88,30 +113,21 @@ public class Ball : MonoBehaviour
 
     IEnumerator LaunchDirection()
     {
-        startLaunchActive = true;
         launchPivot.SetActive(true);
+        float time = 0;
 
-       
-       
-        
-            if (launchPivot.transform.rotation.z >= -80)
-            {
-                
-                launchPivot.transform.rotation *= Quaternion.Euler(0, 0, -1);
-                
+        while (true)
+        {
+            time += Time.deltaTime * rotationSpeed;
 
-            }
-            else if (launchPivot.transform.rotation.z <= 80) { launchPivot.transform.rotation *= Quaternion.Euler(0, 0, 1); }
+            float rotation = Mathf.PingPong(time, maxAngle * 2) - maxAngle;
 
-        
-
-
-
-
-        yield return null;
+            launchPivot.transform.rotation = Quaternion.Euler(0, 0, rotation);
+            Debug.Log("rotating");
+            yield return null;
+        }
 
     }
-
 
 
     //questa funziona solo con i muri perché gli ho assegnato un layer apposta
@@ -124,11 +140,36 @@ public class Ball : MonoBehaviour
         {
             Debug.Log("muro toccato");
 
+            //ballDirection = Vector3.MoveTowards(lastVelocity.normalized, newDirection.normalized, Time.deltaTime);
 
-            rb.AddForce(newDirection * force, ForceMode.Force);
+            //rb.AddForce(newDirection.normalized * speed, ForceMode.Impulse);
+            ballSpeed = lastVelocity.magnitude;
+            
+            Vector2 redirectDirection = (newDirection - transform.position).normalized;
+            rb.linearVelocity = redirectDirection * ballSpeed * 1f;
+
             manualBounceActive = false;
+
+            return;
 
         }
         rb.linearVelocity = ballDirection * Mathf.Max(ballSpeed, 0f);
+
+        if (collision.gameObject.TryGetComponent<IBrick>(out IBrick interactable))
+            {
+                interactable.TakeDamage(ballDamage);
+            }
+    }
+
+
+
+    public void TakeDamage(int damage)
+    {
+
+    }
+
+    public void Destroy()
+    {
+
     }
 }

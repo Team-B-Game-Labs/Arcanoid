@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 
 
 
-public class Ball : MonoBehaviour, IBrick
+public class Ball : MonoBehaviour
 {
     [SerializeField] private float force = 5.0f;
     [SerializeField] GameObject launchPivot;
@@ -146,7 +146,7 @@ public class Ball : MonoBehaviour, IBrick
             ballSpeed = lastVelocity.magnitude;
             
             Vector2 redirectDirection = (newDirection - transform.position).normalized;
-            rb.linearVelocity = redirectDirection * ballSpeed * 1f;
+            rb.linearVelocity = redirectDirection * ballSpeed;
 
             manualBounceActive = false;
 
@@ -161,15 +161,4 @@ public class Ball : MonoBehaviour, IBrick
             }
     }
 
-
-
-    public void TakeDamage(int damage)
-    {
-
-    }
-
-    public void Destroy()
-    {
-
-    }
 }

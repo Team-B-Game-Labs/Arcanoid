@@ -1,18 +1,31 @@
 using UnityEngine;
+using System;
+using Unity.VisualScripting;
 
-public class Drops : MonoBehaviour
+public class Drops : MonoBehaviour, ICollectable
 {
     enum TypeDrops
     {
-        EnergyBall,
-        Bullet,
-        TargetBullet,
-        Buff_Invincible,
-        Buff_BulletShot,
-        Debuff_3xBall
+        EnergyBall = 0,
+        Buff_Invincible = 1,
+        Buff_BulletShot = 2,
+        Debuff_3xBall = 3
 
     }
 
+    public static event Action<int> OnCollect;
+
     [SerializeField] TypeDrops typeDrops;
 
+    private int dropNumber => (int)typeDrops;
+
+    public void Collect()
+    {
+        OnCollect?.Invoke(dropNumber);
+    }
+
+    public void Destroy()
+    {
+        throw new NotImplementedException();
+    }
 }

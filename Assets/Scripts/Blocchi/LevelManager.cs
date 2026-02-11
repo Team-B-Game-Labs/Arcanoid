@@ -15,13 +15,14 @@ public class LevelManager : MonoBehaviour
         currentBlock = totalBlock;
         if (Level.Count > 0)
         {
-            levelSelected = Level[Random.Range(0, Level.Count)];
+            levelSelected = Level[Random.Range(0, Level.Count+1)];
         }
 
     }
     private void OnEnable()
     {
         Brick.OnBrickDestroyed += LevelChanger;
+        
     }
     private void OnDisable()
     {
@@ -45,4 +46,5 @@ public class LevelManager : MonoBehaviour
         }
         
     }
+    
 }

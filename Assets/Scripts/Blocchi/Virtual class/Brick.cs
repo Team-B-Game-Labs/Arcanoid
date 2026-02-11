@@ -10,10 +10,7 @@ public abstract class Brick : MonoBehaviour, IBrick
         White,
         Green,
         Blue,
-        Rose,
         Black,
-        Brown,
-        Burgundy
 
     }
     enum ScoreSet
@@ -34,6 +31,8 @@ public abstract class Brick : MonoBehaviour, IBrick
 
     public static event Action OnBrickDestroyed;
 
+    public static event Action<int> OnSetScorePoint;
+
 
     [SerializeField] BrickType types;
 
@@ -45,30 +44,37 @@ public abstract class Brick : MonoBehaviour, IBrick
 
     protected int currentHealth;
 
-    private int texturIndex = 0;
+    private int texturIndex;
+
+    protected int dropIndex;
+
+    [SerializeField]protected GameObject[] DropItem = new GameObject[1];
     
 
     [SerializeField] Texture[] brokenTexture = new Texture[1];
+
     Material material;
+
+    public virtual void Awake()
+    {
+        GetComponent<Renderer>().material.color = brikColor;
+        material = GetComponent<Material>();
+    }
 
     public virtual void Start()
     {
         currentHealth = health;
-
-        GetComponent<Renderer>().material.color = brikColor;
+        
         material.mainTexture = null;
 
+        texturIndex = 0;
         
-
-        //Linea codice per swippare
-        //material.mainTexture = brokenTexture[textureIndexx]
-        //texture indez++
     }
 
 
     public virtual void Effect()
     {
-
+        OnSetScorePoint?.Invoke(ScoreValue);
     }
 
     protected void EventAction_OnBrickDestroyed()
@@ -79,7 +85,16 @@ public abstract class Brick : MonoBehaviour, IBrick
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        //Cambio Materia/Texture in base al danno
+        if (currentHealth <= 0)
+        {
+            Destroy();
+        }
+        material.mainTexture = brokenTexture[texturIndex];
+        if(texturIndex + 1 <= brokenTexture.Length)
+        {
+            texturIndex += 1;
+        }
+        
     }
 
     public void Destroy()
@@ -88,4 +103,6 @@ public abstract class Brick : MonoBehaviour, IBrick
         Effect();
         GetComponent<GameObject>().SetActive(false);
     }
+
+    
 }

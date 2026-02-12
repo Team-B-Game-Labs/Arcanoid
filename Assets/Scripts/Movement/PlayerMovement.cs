@@ -50,4 +50,15 @@ public class PlayerMovement : MonoBehaviour
 
         oldPos = Player.position;
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<ICollectable>(out var collectable))
+        {
+            collectable.Collect();
+            collectable.Destroy();
+
+        }
+    }
 }

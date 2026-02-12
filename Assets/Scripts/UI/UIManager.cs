@@ -6,11 +6,7 @@ using System;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TMP_Text score;
-    [SerializeField] Image Slot1;
-    [SerializeField] Image slot2;
-    [SerializeField] Image slot3;
-    [SerializeField] Image slot4;
-    [SerializeField] Image slot5;
+    [SerializeField] Image energyFillAmounth;
     int currentScore;
 
     private void Start()
@@ -21,32 +17,39 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         Brick.OnSetScorePoint += SetScore;
-        Drops.OnCollect += SetSlots;
+        Drops.OnCollect += SetCollectableUI;
+        EnergyBall.OnTakeEnergyBall += FillEnergy;
     }
 
 
     private void OnDisable()
     {
         Brick.OnSetScorePoint -= SetScore;
-        Drops.OnCollect -= SetSlots;
+        Drops.OnCollect -= SetCollectableUI;
+        EnergyBall.OnTakeEnergyBall -= FillEnergy;
     }
 
-    private void SetSlots(int dropNumber)
+    private void SetCollectableUI(int dropNumber)
     {
-        switch(dropNumber)
-        {
-            case 0:
-                //Barra dell'energia che aumenta...
-                break;
-                case 1:
-                break;
-
-
-        }
+        
     }
+
+
     public void SetScore(int scoreValue)
     {
         currentScore =+ scoreValue;
         score.text = currentScore.ToString();
+    }
+
+    public void FillEnergy()
+    {
+        energyFillAmounth.fillAmount = GameManager.instance.currentEnergy / GameManager.instance.maxEnergy;
+        if(energyFillAmounth.fillAmount <= 0.8f)
+        {
+            energyFillAmounth.color = Color.green;
+        }
+        else
+            energyFillAmounth.color = Color.blue;
+
     }
 }

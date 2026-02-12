@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 
-public class Drops : MonoBehaviour, ICollectable
+public abstract class Drops : MonoBehaviour, ICollectable
 {
     enum TypeDrops
     {
@@ -19,7 +19,7 @@ public class Drops : MonoBehaviour, ICollectable
 
     private int dropNumber => (int)typeDrops;
 
-    public void Collect()
+    public virtual void Collect()
     {
         OnCollect?.Invoke(dropNumber);
     }

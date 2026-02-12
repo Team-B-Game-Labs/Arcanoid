@@ -1,4 +1,4 @@
-using System;
+ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -95,6 +95,8 @@ public abstract class Brick : MonoBehaviour, IBrick
             texturIndex += 1;
         }
         
+        if(currentHealth <= 0) 
+            Destroy();
     }
 
     public void Destroy()

@@ -32,7 +32,7 @@ public class ClickRaycast : MonoBehaviour
     public void Update()
     {
         Vector3 clickPos = Input.mousePosition;
-        clickPos.z = 9.17f;
+        clickPos.z = 10;
         
        Vector3 pointPos = cam.ScreenToWorldPoint(clickPos);
         Debug.DrawLine(transform.position, pointPos, Color.green);

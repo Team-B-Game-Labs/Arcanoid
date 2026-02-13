@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 public enum GameStatus
 {
@@ -8,11 +10,21 @@ public enum GameStatus
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [Header("DropBall")]
+    [SerializeField] GameObject ball;
+    [SerializeField] GameObject secondaryBall;
+    
     public GameStatus status;
     [SerializeField] int Energy;
     public int currentEnergy;
     public int maxEnergy = 120;
+    
 
+    
+     
+
+    
     private void Awake()
     {
         if (instance != null)
@@ -25,11 +37,11 @@ public class GameManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        
+        DropBall.onDropBallTake += DropBallTake;
     }
     private void OnDisable()
     {
-        
+        DropBall.onDropBallTake -= DropBallTake;
     }
 
     private void Start()
@@ -46,5 +58,19 @@ public class GameManager : MonoBehaviour
     public void EnergyTake()
     {
         currentEnergy += 25;
+        Debug.Log(currentEnergy);
+    }
+
+    public void BulletTake()
+    {
+        currentEnergy -= 30;
+        Debug.Log(currentEnergy);
+    }
+
+    public void DropBallTake()
+    {
+        Instantiate(secondaryBall, ball.transform.position, Quaternion.identity);
+        Instantiate(secondaryBall, ball.transform.position, Quaternion.identity);
+        Instantiate(secondaryBall, ball.transform.position, Quaternion.identity);
     }
 }

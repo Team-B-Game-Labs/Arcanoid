@@ -10,6 +10,9 @@ using Unity.VisualScripting;
 
 public class Ball : MonoBehaviour
 {
+
+    public static Ball instance;
+
     [SerializeField] private float force = 5.0f;
     [SerializeField] GameObject launchPivot;
     [SerializeField] float targetSpeed = 8f;
@@ -38,6 +41,13 @@ public class Ball : MonoBehaviour
     private void Awake()
     {
         brick = GetComponent<Brick>();
+
+        if(instance != null)
+        {
+            Destroy(this);
+
+        }
+        instance = this;
     }
     private void Start()
     {

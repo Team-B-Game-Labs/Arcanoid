@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
         Brick.OnSetScorePoint += SetScore;
         Drops.OnCollect += SetCollectableUI;
         EnergyBall.OnTakeEnergyBall += FillEnergy;
+        Bullet.onBulletHit += FillEnergy;
     }
 
 
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
         Brick.OnSetScorePoint -= SetScore;
         Drops.OnCollect -= SetCollectableUI;
         EnergyBall.OnTakeEnergyBall -= FillEnergy;
+        Bullet.onBulletHit -= FillEnergy;
     }
 
     private void SetCollectableUI(int dropNumber)

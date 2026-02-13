@@ -21,11 +21,12 @@ public abstract class Drops : MonoBehaviour, ICollectable
 
     public virtual void Collect()
     {
-        OnCollect?.Invoke(dropNumber);
+       OnCollect?.Invoke(dropNumber);
+        Destroy(gameObject);
     }
 
     public void Destroy()
     {
-        throw new NotImplementedException();
+        Destroy(gameObject);
     }
 }

@@ -1,36 +1,41 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
-public class EnergyBall : Drops
+public class DropBall : Drops
 {
-    public static event Action OnTakeEnergyBall;
-    Rigidbody rb;
-    [SerializeField] float speed = 3f;
 
+    public static event Action onDropBallTake;
+
+    [SerializeField] float speed = 3f;
+    Rigidbody rb;
+    
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(Vector3.down * speed, ForceMode.Impulse);
     }
+
     public override void Collect()
     {
-        OnTakeEnergyBall?.Invoke();
+        onDropBallTake?.Invoke();
         base.Collect();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == 7)
+        if (collision.gameObject.layer == 7)
         {
             Destroy();
             return;
         }
-        if(collision.gameObject.layer == 3)
+        if (collision.gameObject.layer == 3)
         {
-            GameManager.instance.EnergyTake();
+            
             Collect();
             return;
         }
-        
+
     }
+
+
 }

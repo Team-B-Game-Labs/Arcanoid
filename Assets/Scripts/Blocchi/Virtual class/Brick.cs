@@ -64,10 +64,11 @@ public abstract class Brick : MonoBehaviour, IBrick
     public virtual void Start()
     {
         currentHealth = health;
-        
-        material.mainTexture = null;
 
         texturIndex = 0;
+        
+        material.mainTexture = brokenTexture[0];
+
         
     }
 
@@ -85,18 +86,18 @@ public abstract class Brick : MonoBehaviour, IBrick
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+
+        texturIndex++;
+
         if (currentHealth <= 0)
         {
             Destroy();
         }
+
         material.mainTexture = brokenTexture[texturIndex];
-        if(texturIndex + 1 <= brokenTexture.Length)
-        {
-            texturIndex += 1;
-        }
         
-        if(currentHealth <= 0) 
-            Destroy();
+        
+        
     }
 
     public void Destroy()

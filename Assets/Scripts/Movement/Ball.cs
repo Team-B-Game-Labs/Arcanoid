@@ -168,6 +168,7 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.TryGetComponent<IBrick>(out IBrick interactable))
             {
                 interactable.TakeDamage(ballDamage);
+            Debug.Log("damage: " + ballDamage.ToString());
             }
     }
 

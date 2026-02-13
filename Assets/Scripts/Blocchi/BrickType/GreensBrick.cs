@@ -9,7 +9,7 @@ public class GreensBrick : Brick
         randomDrop = Random.Range(0, DropItem.Length + 1);
         if (randomDrop > -1)
         {
-            Instantiate(DropItem[randomDrop]);
+            Instantiate(DropItem[randomDrop], transform.position, transform.localRotation);
         }
     }
 }

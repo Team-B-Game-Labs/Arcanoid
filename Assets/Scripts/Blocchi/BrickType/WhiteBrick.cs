@@ -12,6 +12,6 @@ public class WhiteBrick : Brick
     public override void Effect()
     {
         base.Effect();
-        Instantiate(energyBall);
+        Instantiate(energyBall, transform.position, transform.localRotation);
     }
 }

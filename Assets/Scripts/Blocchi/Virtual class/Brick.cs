@@ -38,11 +38,12 @@ public abstract class Brick : MonoBehaviour, IBrick
 
 
     [SerializeField] protected int health = 1;
+    
 
 
     [SerializeField] protected Color brikColor = Color.white;
 
-    protected int currentHealth;
+    [SerializeField] protected int currentHealth;
 
     private int texturIndex;
 
@@ -67,7 +68,7 @@ public abstract class Brick : MonoBehaviour, IBrick
 
         texturIndex = 0;
         
-        material.mainTexture = brokenTexture[0];
+        //material.mainTexture = brokenTexture[0];
 
         
     }
@@ -94,7 +95,7 @@ public abstract class Brick : MonoBehaviour, IBrick
             Destroy();
         }
 
-        material.mainTexture = brokenTexture[texturIndex];
+        //material.mainTexture = brokenTexture[texturIndex];
         
         
         
@@ -104,7 +105,7 @@ public abstract class Brick : MonoBehaviour, IBrick
     {
         EventAction_OnBrickDestroyed();
         Effect();
-        GetComponent<GameObject>().SetActive(false);
+        Destroy(gameObject);
     }
 
     

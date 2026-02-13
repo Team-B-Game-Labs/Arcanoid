@@ -14,7 +14,7 @@ public class GrayBrick : Brick
         base.Effect();
         dropIndex = Random.Range(1, 4);
         if (dropIndex == 1)
-            Instantiate(energyBall);
+            Instantiate(energyBall, transform.position, transform.localRotation);
     }
 
 }

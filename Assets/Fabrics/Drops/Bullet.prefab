@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &433969849743534431
 Transform:
   m_ObjectHideFlags: 0
@@ -107,7 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   typeDrops: 2
   speed: 8
-  paletta: {fileID: 0}
 --- !u!54 &8703986116823612584
 Rigidbody:
   m_ObjectHideFlags: 0

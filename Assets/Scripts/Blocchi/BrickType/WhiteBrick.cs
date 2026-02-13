@@ -7,7 +7,7 @@ public class WhiteBrick : Brick
     public override void Start()
     {
         base.Start();
-        energyBall = DropItem[1];
+        energyBall = DropItem[0];
     }
     public override void Effect()
     {

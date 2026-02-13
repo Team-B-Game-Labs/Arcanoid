@@ -29,7 +29,7 @@ public class Bullet : Drops
         if(collision.gameObject.layer == 3)
         {
             onBulletHit?.Invoke();
-            GameManager.instance.BulletTake();
+            
             Destroy();
             return;
         }

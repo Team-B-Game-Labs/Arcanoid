@@ -118,6 +118,8 @@ public class Ball : MonoBehaviour
 
         Debug.Log("Launch");
 
+        GameManager.instance.status = GameStatus.GameRunning;
+
     }
 
 

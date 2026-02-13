@@ -52,14 +52,14 @@ public abstract class Brick : MonoBehaviour, IBrick
     [SerializeField]protected GameObject[] DropItem = new GameObject[1];
     
 
-    [SerializeField] Texture[] brokenTexture = new Texture[1];
+    [SerializeField] Material[] brokenTexture;
 
-    Material material;
+    MeshRenderer material;
 
     public virtual void Awake()
     {
-        GetComponent<Renderer>().material.color = brikColor;
-        material = GetComponent<Material>();
+        ///*GetComponent<Renderer>().material.color*/ = brikColor;
+        material = GetComponent<MeshRenderer>();
     }
 
     public virtual void Start()
@@ -68,7 +68,7 @@ public abstract class Brick : MonoBehaviour, IBrick
 
         texturIndex = 0;
         
-        //material.mainTexture = brokenTexture[0];
+        material.material = brokenTexture[0];
 
         
     }
@@ -95,7 +95,7 @@ public abstract class Brick : MonoBehaviour, IBrick
             Destroy();
         }
 
-        //material.mainTexture = brokenTexture[texturIndex];
+        material.material = brokenTexture[texturIndex];
         
         
         

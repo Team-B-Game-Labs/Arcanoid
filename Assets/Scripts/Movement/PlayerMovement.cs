@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public static event Action ballDamage;
 
     [SerializeField] private Transform Player;
-    [SerializeField] float movementSpeed = 5f;
+    [SerializeField] public float movementSpeed = 5f;
     [SerializeField] float lateralBound = 4.8f;
     private Vector2 movement;
     Vector2 startPos;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-       
+        Player.position = new Vector3(Player.position.x, Player.position.y, -0.01f);
         
     }
     private void FixedUpdate()
@@ -38,7 +38,10 @@ public class PlayerMovement : MonoBehaviour
         //if (GameManager.instance.status == GameStatus.GameRunning)
         //    Move();
         // Poi da attivare una volta che il sistema di GeameStatus viene implementato
-        Move();
+       if(GameManager.instance.status == GameStatus.GameRunning)
+            Move();
+
+        
         
         
         movement.Normalize();

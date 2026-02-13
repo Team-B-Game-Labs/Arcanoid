@@ -129,8 +129,9 @@ MonoBehaviour:
   types: 1
   health: 2
   brikColor: {r: 1, g: 1, b: 1, a: 1}
+  currentHealth: 0
   DropItem:
   - {fileID: 7360311079061833816, guid: e63282be1e6b03b44aeb0a8f18f7a850, type: 3}
   brokenTexture:
-  - {fileID: 2800000, guid: 1599c08048de99341bca5339da1821bf, type: 3}
-  - {fileID: 2800000, guid: 544e4d3c0365ccf4894361bfb65a767b, type: 3}
+  - {fileID: 2100000, guid: d7f47552b9b7e4c48b08eb53e84aa918, type: 2}
+  - {fileID: 2100000, guid: 3a75fd3b5eae5bb418245bb4a503d9a4, type: 2}

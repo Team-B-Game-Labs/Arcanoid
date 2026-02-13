@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 public enum GameStatus
 {
     GameRunning,
@@ -14,17 +16,17 @@ public class GameManager : MonoBehaviour
     [Header("DropBall")]
     [SerializeField] GameObject ball;
     [SerializeField] GameObject secondaryBall;
-    
+
     public GameStatus status;
     [SerializeField] int Energy;
     public int currentEnergy;
     public int maxEnergy = 120;
-    
 
-    
-     
 
-    
+
+
+
+
     private void Awake()
     {
         if (instance != null)
@@ -39,22 +41,38 @@ public class GameManager : MonoBehaviour
     {
         DropBall.onDropBallTake += DropBallTake;
         PlayerMovement.ballDamage += BallDamage;
+        Bullet.onBulletHit += BulletTake;
+        GrowthDrop.onGrowthDropTake += GrowthTake;
+        Laser.onLaserHit += LaserHit;
     }
     private void OnDisable()
     {
         DropBall.onDropBallTake -= DropBallTake;
-        PlayerMovement.ballDamage += BallDamage;
+        PlayerMovement.ballDamage -= BallDamage;
+        Bullet.onBulletHit -= BulletTake;
+        GrowthDrop.onGrowthDropTake -= GrowthTake;
+        Laser.onLaserHit -= LaserHit;
     }
 
     private void Start()
     {
         currentEnergy = Energy;
-        status = GameStatus.GamePaused;
+       status = GameStatus.GamePaused;
+    }
+
+    private void Update() //da reintegrare poi il gamestatus una volta che si hanno tutti i pezzi
+    {
+        //if (status == GameStatus.GamePaused)
+        //{
+        //    Time.timeScale = 0.0f;
+
+        //}
+        //else Time.timeScale = 1.0f;
     }
 
     public void StartGame()
     {
-        status = GameStatus.GameRunning;
+        status = GameStatus.GameStopped;
     }
 
     public void EnergyTake()
@@ -80,5 +98,45 @@ public class GameManager : MonoBehaviour
     {
         currentEnergy -= 45;
         Debug.Log(currentEnergy);
+    }
+
+    public void GrowthTake()
+    {
+        StartCoroutine(Growth());
+    }
+
+    IEnumerator Growth()
+    {
+        Vector3 originalScale;
+        float growth = 0.8f;
+
+        originalScale = PlayerMovement.instance.gameObject.transform.localScale;
+
+        PlayerMovement.instance.gameObject.transform.localScale = new Vector3
+                                            (originalScale.x += growth, originalScale.y, originalScale.z);
+        Debug.Log("Growth");
+
+      yield return  new WaitForSeconds(8f);
+
+        PlayerMovement.instance.gameObject.transform.localScale = new Vector3   
+                                            (originalScale.x -= growth, originalScale.y, originalScale.z);
+        Debug.Log("shrink");
+       yield return null;
+    }
+
+    public void LaserHit()
+    {
+        StartCoroutine(laserHit());
+    }
+
+    IEnumerator laserHit()
+    {
+        PlayerMovement.instance.movementSpeed -= 5f;
+
+        yield return new WaitForSeconds(6f);
+
+        PlayerMovement.instance.movementSpeed += 5f;
+
+        yield return null;
     }
 }

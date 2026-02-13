@@ -38,10 +38,12 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         DropBall.onDropBallTake += DropBallTake;
+        PlayerMovement.ballDamage += BallDamage;
     }
     private void OnDisable()
     {
         DropBall.onDropBallTake -= DropBallTake;
+        PlayerMovement.ballDamage += BallDamage;
     }
 
     private void Start()
@@ -72,5 +74,11 @@ public class GameManager : MonoBehaviour
         Instantiate(secondaryBall, ball.transform.position, Quaternion.identity);
         Instantiate(secondaryBall, ball.transform.position, Quaternion.identity);
         Instantiate(secondaryBall, ball.transform.position, Quaternion.identity);
+    }
+
+    public void BallDamage()
+    {
+        currentEnergy -= 45;
+        Debug.Log(currentEnergy);
     }
 }

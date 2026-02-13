@@ -1,18 +1,26 @@
+using System.Collections;
 using UnityEngine;
 
 public class SecondaryBall : MonoBehaviour
 {
     [SerializeField] float speed = 8f;
     public int ballDamage = 1;
-
+    [SerializeField] float timeBeforeDespawn = 10f;
     public int bounceCounter = 0;
+    bool canDespawn;
 
     Ball ball;
     Rigidbody rb;
 
     Vector3 lastVelocity;
+
+    private void Start()
+    {
+        canDespawn = false;
+    }
     private void OnEnable()
     {
+        
         rb = GetComponent<Rigidbody>();
         ball = FindAnyObjectByType<Ball>();
         Launch();
@@ -53,14 +61,18 @@ public class SecondaryBall : MonoBehaviour
             interactable.TakeDamage(ballDamage);
         }
 
-        if (collision.gameObject.layer == 7 || collision.gameObject.layer == 8)
-        {
-            bounceCounter++;
+        StartCoroutine(disableCount());
+         if((collision.gameObject.layer == 7 || collision.gameObject.layer == 8) && canDespawn == true)
+                    Destroy(gameObject); 
+    }
 
-            if (bounceCounter >= 4)
-            {
-                Destroy(gameObject);
-            }
-        }
+    IEnumerator disableCount()
+    {
+        yield return new WaitForSeconds(timeBeforeDespawn);
+
+        canDespawn = true;
+
+        yield return null;
+        
     }
 }

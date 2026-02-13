@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
+    public static event Action ballDamage;
+
     [SerializeField] private Transform Player;
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] float lateralBound = 4.8f;
@@ -10,6 +14,15 @@ public class PlayerMovement : MonoBehaviour
     Vector2 startPos;
     Vector2 oldPos;
 
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        instance = this;
+    }
     private void Start()
     {
         startPos = Player.position;
@@ -17,10 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Player.position = startPos;
-        }
+       
         
     }
     private void FixedUpdate()
@@ -51,6 +61,12 @@ public class PlayerMovement : MonoBehaviour
         oldPos = Player.position;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == 9)
+        {
+            ballDamage?.Invoke();
+        }
+    }
 
-    
 }

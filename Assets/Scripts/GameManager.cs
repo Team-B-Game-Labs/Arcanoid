@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int Energy;
     public int currentEnergy;
     public int maxEnergy = 120;
-
+    public bool canDamage;
 
 
 
@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
         }
         instance = this;
 
+        canDamage = true;
+
     }
     private void OnEnable()
     {
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
         Bullet.onBulletHit += BulletTake;
         GrowthDrop.onGrowthDropTake += GrowthTake;
         Laser.onLaserHit += LaserHit;
+        Invincibility.onInvincibilityTake += InvincibilityTake;
     }
     private void OnDisable()
     {
@@ -52,12 +55,13 @@ public class GameManager : MonoBehaviour
         Bullet.onBulletHit -= BulletTake;
         GrowthDrop.onGrowthDropTake -= GrowthTake;
         Laser.onLaserHit -= LaserHit;
+        Invincibility.onInvincibilityTake -= InvincibilityTake;
     }
 
     private void Start()
     {
         currentEnergy = Energy;
-       status = GameStatus.GamePaused;
+        status = GameStatus.GamePaused;
     }
 
     private void Update() //da reintegrare poi il gamestatus una volta che si hanno tutti i pezzi
@@ -83,8 +87,11 @@ public class GameManager : MonoBehaviour
 
     public void BulletTake()
     {
-        currentEnergy -= 30;
-        Debug.Log(currentEnergy);
+        if (canDamage == true)
+        {
+            currentEnergy -= 30;
+            Debug.Log(currentEnergy);
+        }
     }
 
     public void DropBallTake()
@@ -96,8 +103,11 @@ public class GameManager : MonoBehaviour
 
     public void BallDamage()
     {
-        currentEnergy -= 45;
-        Debug.Log(currentEnergy);
+        if (canDamage == true)
+        {
+            currentEnergy -= 45;
+            Debug.Log(currentEnergy);
+        }
     }
 
     public void GrowthTake()
@@ -116,12 +126,12 @@ public class GameManager : MonoBehaviour
                                             (originalScale.x += growth, originalScale.y, originalScale.z);
         Debug.Log("Growth");
 
-      yield return  new WaitForSeconds(8f);
+        yield return new WaitForSeconds(8f);
 
-        PlayerMovement.instance.gameObject.transform.localScale = new Vector3   
+        PlayerMovement.instance.gameObject.transform.localScale = new Vector3
                                             (originalScale.x -= growth, originalScale.y, originalScale.z);
         Debug.Log("shrink");
-       yield return null;
+        yield return null;
     }
 
     public void LaserHit()
@@ -138,5 +148,19 @@ public class GameManager : MonoBehaviour
         PlayerMovement.instance.movementSpeed += 5f;
 
         yield return null;
+    }
+
+    public void InvincibilityTake()
+    {
+        canDamage = false;
+        StartCoroutine(invincibTake());
+
+    }
+
+    IEnumerator invincibTake()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        canDamage = true;
     }
 }

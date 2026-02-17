@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 
+
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
@@ -10,10 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform Player;
     [SerializeField] public float movementSpeed = 5f;
     [SerializeField] float lateralBound = 4.8f;
+    [SerializeField] Material normal;
+    [SerializeField] Material invincible;
+
     private Vector2 movement;
     Vector2 startPos;
     Vector2 oldPos;
-
+    MeshRenderer material;
     private void Awake()
     {
         if(instance != null)
@@ -22,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         instance = this;
+
+        material = GetComponent<MeshRenderer>();    
+        
     }
     private void Start()
     {
@@ -32,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Player.position = new Vector3(Player.position.x, Player.position.y, -0.01f);
         
+        if(GameManager.instance.canDamage == false)
+        {
+            material.material = invincible;
+        }
+        else { material.material = normal; }
     }
     private void FixedUpdate()
     {

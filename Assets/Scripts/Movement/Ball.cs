@@ -15,11 +15,16 @@ public class Ball : MonoBehaviour
 
     [SerializeField] private float force = 5.0f;
     [SerializeField] GameObject launchPivot;
-    [SerializeField] float targetSpeed = 8f;
+    public float targetSpeed = 8f;
+    [SerializeField] Sprite normal;
+    [SerializeField] Sprite redirectable;
+    [SerializeField] Sprite overflow;
     public int ballDamage;
     public Vector3 velocity;
     public float ballSpeed;
     Rigidbody rb;
+
+    SpriteRenderer spriteRenderer;
 
     Vector3 startPos;
     Vector3 newDirection;
@@ -31,12 +36,13 @@ public class Ball : MonoBehaviour
     [SerializeField] float rotationSpeed = 10f;
     public float maxAngle;
 
-
+    Animator animator;
 
 
     //public static event Action <Vector2> OnMouseClick;
 
     bool manualBounceActive;
+    bool canRedirect;
 
     private void Awake()
     {
@@ -52,6 +58,7 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         manualBounceActive = false;
+        canRedirect = true;
 
         rb = GetComponent<Rigidbody>();
         velocity = rb.linearVelocity;
@@ -91,7 +98,7 @@ public class Ball : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonDown(0) /* && GameManager.instance.status == GameStatus.GameRunning */ )
+        if (Input.GetMouseButtonDown(0) && canRedirect == true)
         {
             manualBounceActive = true;
             ClickRaycast.instance.OnClickMove();
@@ -101,6 +108,17 @@ public class Ball : MonoBehaviour
 
 
         }
+
+        if (GameManager.instance.currentEnergy >= 100)
+        {
+            spriteRenderer.sprite = overflow;
+
+        }
+        else if (canRedirect == true) spriteRenderer.sprite = redirectable;
+        else spriteRenderer.sprite = normal;
+        
+          
+        
 
     }
 
@@ -151,6 +169,7 @@ public class Ball : MonoBehaviour
         Vector3 clickPos = Input.mousePosition;
         if ((collision.gameObject.layer == 7 || collision.gameObject.layer == 8) && manualBounceActive == true)
         {
+            canRedirect = false;
             Debug.Log("muro toccato");
 
             //ballDirection = Vector3.MoveTowards(lastVelocity.normalized, newDirection.normalized, Time.deltaTime);
@@ -161,9 +180,11 @@ public class Ball : MonoBehaviour
             Vector2 redirectDirection = (newDirection - transform.position).normalized;
             rb.linearVelocity = redirectDirection * ballSpeed;
 
+            StartCoroutine(RebounceCoodlown());
             manualBounceActive = false;
-
             return;
+
+
 
         }
         rb.linearVelocity = ballDirection * Mathf.Max(ballSpeed, 0f);
@@ -175,4 +196,18 @@ public class Ball : MonoBehaviour
             }
     }
 
+    IEnumerator RebounceCoodlown()
+    {
+
+        yield return new WaitForSeconds(4f);
+
+        canRedirect = true;
+
+        Debug.Log("redirect attivo");
+
+        StopAllCoroutines();
+        yield return null;
+
+
+    }
 }

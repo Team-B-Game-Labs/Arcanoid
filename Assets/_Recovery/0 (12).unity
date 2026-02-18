@@ -4955,6 +4955,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1888029094}
+  - component: {fileID: 1888029096}
   - component: {fileID: 1888029095}
   m_Layer: 0
   m_Name: GameManager
@@ -4993,10 +4994,32 @@ MonoBehaviour:
   ball: {fileID: 777607827}
   secondaryBall: {fileID: 3623998421498467733, guid: e69fbf459c529d24eb877d21ae64055d, type: 3}
   normalSpeed: 8
-  fasterSpeed: 13
-  overflowSpeed: 20
+  fasterSpeed: 12
+  overflowSpeed: 16
   status: 0
   Energy: 50
+  currentEnergy: 0
+  maxEnergy: 120
+  canDamage: 0
+--- !u!114 &1888029096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888029093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 153c70dcf53d658479a2c8d0e6f5596e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  ball: {fileID: 0}
+  secondaryBall: {fileID: 0}
+  normalSpeed: 8
+  fasterSpeed: 13
+  overflowSpeed: 18
+  status: 0
+  Energy: 0
   currentEnergy: 0
   maxEnergy: 120
   canDamage: 0

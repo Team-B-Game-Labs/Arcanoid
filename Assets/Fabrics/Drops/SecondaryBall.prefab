@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1939612355068046241}
   - component: {fileID: 2994699632382945675}
   - component: {fileID: 4076865613879069756}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SecondaryBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 456
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 567
@@ -155,4 +155,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SecondaryBall
   speed: 8
   ballDamage: 1
+  timeBeforeDespawn: 10
   bounceCounter: 0

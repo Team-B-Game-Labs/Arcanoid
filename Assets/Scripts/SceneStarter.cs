@@ -3,15 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class SceneStarter : MonoBehaviour
 {
-    public void PlayButtons()
+    public void PlayButtonsStartGame()
     {
         SceneManager.LoadScene(0);
     }
 
-    public void QuitButton()
+    public void QuitButtonStartGame()
     {
         Application.Quit();
         
     }
+
     
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

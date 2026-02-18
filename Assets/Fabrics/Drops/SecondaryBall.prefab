@@ -112,7 +112,7 @@ Rigidbody:
     m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 567
+    m_Bits: 560
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0

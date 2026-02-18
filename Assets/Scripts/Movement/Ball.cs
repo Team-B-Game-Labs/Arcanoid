@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
     public float ballSpeed;
     Rigidbody rb;
 
-
+    Vector3 startPos;
     Vector3 newDirection;
     Vector3 lastVelocity;
     Brick brick;
@@ -56,6 +56,7 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         velocity = rb.linearVelocity;
 
+        startPos = transform.position;
     }
     private void Update()
     {
@@ -63,30 +64,30 @@ public class Ball : MonoBehaviour
         lastVelocity = rb.linearVelocity;
 
        
-        if (launchPivot != null)
+        if (launchPivot != null) //comando lancio pallina
         {
 
 
 
-            if (Input.GetKey(KeyCode.Space) /*&& GameManager.instance.status == GameStatus.GamePaused */)
+            if (Input.GetKey(KeyCode.Space) && GameManager.instance.status == GameStatus.GameStopped)
             {
                 StartCoroutine(LaunchDirection());
                 Debug.Log("LaunchDirection");
 
 
             }
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space) && GameManager.instance.status == GameStatus.GameStopped)
             {
                 StopAllCoroutines();
                 Launch();
                 launchPivot.SetActive(false);
-                Destroy(launchPivot);
-                /* GameManager.instance.status = GameStatus.GameRunning; */
+
+                GameManager.instance.status = GameStatus.GameRunning;
 
 
 
             }
-        }
+        }//comando lancio pallina
 
 
 

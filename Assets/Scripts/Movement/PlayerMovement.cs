@@ -11,13 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform Player;
     [SerializeField] public float movementSpeed = 5f;
     [SerializeField] float lateralBound = 4.8f;
-    [SerializeField] Material normal;
-    [SerializeField] Material invincible;
+    [SerializeField] Sprite normal;
+    [SerializeField] Sprite invincible;
 
     private Vector2 movement;
-    Vector2 startPos;
+    Vector3 startPos;
     Vector2 oldPos;
-    MeshRenderer material;
+    SpriteRenderer material;
     private void Awake()
     {
         if(instance != null)
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         }
         instance = this;
 
-        material = GetComponent<MeshRenderer>();    
+        material = GetComponent<SpriteRenderer>();    
         
     }
     private void Start()
@@ -41,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
         
         if(GameManager.instance.canDamage == false)
         {
-            material.material = invincible;
+            material.sprite = invincible;
         }
-        else { material.material = normal; }
+        else { material.sprite = normal; }
     }
     private void FixedUpdate()
     {

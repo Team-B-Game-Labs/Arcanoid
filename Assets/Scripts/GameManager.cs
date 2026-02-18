@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject secondaryBall;
 
     public GameStatus status;
-    [SerializeField] int Energy;
+    [SerializeField] int Energy = 35;
     public int currentEnergy;
     public int maxEnergy = 120;
     public bool canDamage;
@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         canDamage = true;
+
+        
 
     }
     private void OnEnable()
@@ -61,7 +63,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentEnergy = Energy;
-        status = GameStatus.GamePaused;
+        StartGame();
+        Debug.Log(status);
     }
 
     private void Update() //da reintegrare poi il gamestatus una volta che si hanno tutti i pezzi
@@ -72,6 +75,27 @@ public class GameManager : MonoBehaviour
 
         //}
         //else Time.timeScale = 1.0f;
+        while(status == GameStatus.GameRunning)
+        {
+            float timer = 0;
+            timer += Time.deltaTime;
+            if ((timer % 2) == 0)
+            {
+
+                currentEnergy -= 1;
+
+
+
+                Debug.Log(currentEnergy);
+                
+            }
+            return;
+
+        }
+    }
+
+    private void FixedUpdate()
+    {
     }
 
     public void StartGame()
@@ -89,7 +113,7 @@ public class GameManager : MonoBehaviour
     {
         if (canDamage == true)
         {
-            currentEnergy -= 30;
+            currentEnergy -= 20;
             Debug.Log(currentEnergy);
         }
     }
@@ -105,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
         if (canDamage == true)
         {
-            currentEnergy -= 45;
+            currentEnergy -= 35;
             Debug.Log(currentEnergy);
         }
     }
@@ -118,10 +142,9 @@ public class GameManager : MonoBehaviour
     IEnumerator Growth()
     {
         Vector3 originalScale;
-        float growth = 0.8f;
 
         originalScale = PlayerMovement.instance.gameObject.transform.localScale;
-
+        float growth = 0.15f;
         PlayerMovement.instance.gameObject.transform.localScale = new Vector3
                                             (originalScale.x += growth, originalScale.y, originalScale.z);
         Debug.Log("Growth");

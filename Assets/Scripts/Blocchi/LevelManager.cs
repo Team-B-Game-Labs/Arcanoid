@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
-    private int totalBlock;
-    private int currentBlock;
+    [SerializeField] private int totalBlock;
+    [SerializeField] private int currentBlock;
     [SerializeField] List<GameObject> Level = new List<GameObject>();
-    private GameObject levelSelected;
+    [SerializeField] List<Scene> Boss = new List<Scene>();
     private int bossLevel;
+    private GameObject sus;
 
 
     private void Start()
@@ -15,15 +17,18 @@ public class LevelManager : MonoBehaviour
         currentBlock = totalBlock;
         if (Level.Count > 0)
         {
-            levelSelected = Level[Random.Range(0, Level.Count+1)];
+            Instantiate(Level[Random.Range(0, Level.Count)], transform);
+
         }
 
     }
+
     private void OnEnable()
     {
         Brick.OnBrickDestroyed += LevelChanger;
         
     }
+
     private void OnDisable()
     {
         Brick.OnBrickDestroyed -= LevelChanger;
@@ -32,17 +37,19 @@ public class LevelManager : MonoBehaviour
     private void LevelChanger()
     {
         currentBlock--;
-        if (currentBlock == 0 && bossLevel != 3)
+        if (currentBlock <= 0 && bossLevel != 3)
         {
-            levelSelected = Level[Random.Range(0, Level.Count)];
-            levelSelected.SetActive(true);
+            currentBlock = totalBlock;
+
+            Instantiate(Level[Random.Range(0, Level.Count)], transform);
+            
             bossLevel++;
         }
-        if (currentBlock == 0 && bossLevel == 3)
-        {
-            //Caricare nuova scena per boss
-            //Creare variabili per aggiunta delle scene, 1 -> 3
 
+        if (currentBlock <= 0 && bossLevel == 3)
+        {
+            bossLevel = 0;
+            SceneManager.SetActiveScene(Boss[Random.Range(0, Boss.Count)]);
         }
         
     }

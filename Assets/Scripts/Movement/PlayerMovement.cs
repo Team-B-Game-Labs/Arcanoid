@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 
@@ -83,10 +84,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == 9)
+        if(collision.gameObject.layer == 9 && GameManager.instance.canDamage == true)
         {
             ballDamage?.Invoke();
+            StartCoroutine(Damaged());
         }
     }
 
+    IEnumerator Damaged()
+    {
+        material.color = Color.red;
+
+        yield return new WaitForSeconds(0.1f);
+
+        material.color = Color.white;
+
+        yield return new WaitForSeconds(0.1f);
+        material.color = Color.red;
+
+        yield return new WaitForSeconds(0.1f);
+
+        material.color = Color.white;
+
+        yield return new WaitForSeconds(0.1f);
+    }
 }

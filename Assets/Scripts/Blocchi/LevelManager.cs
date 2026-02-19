@@ -56,7 +56,7 @@ public class LevelManager : MonoBehaviour
 
             
             currentLevel = Instantiate(Level[random], new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, spawnPoint.transform.position.z), transform.localRotation, transform);
-            
+            GameManager.instance.canDamage = false;
             GameManager.instance.reset = true;
 
             GameManager.instance.status = GameStatus.GameStopped;
@@ -66,7 +66,9 @@ public class LevelManager : MonoBehaviour
         if (currentBlock <= 0 && bossLevel >= 2)
         {
             SceneManager.LoadScene(2);
-            bossLevel = 0; 
+            DontDestroyOnLoad(GameManager.instance.gameObject);
+            bossLevel = 0;
+            GameManager.instance.canDamage = false;
             GameManager.instance.reset = true;
             GameManager.instance.status = GameStatus.GameStopped;
         }

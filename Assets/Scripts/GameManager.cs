@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float fasterSpeed = 13f;
     [SerializeField] float overflowSpeed = 20f;
 
-    [SerializeField] GameObject losePanel;
+   
 
     public GameStatus status;
     [SerializeField] int Energy = 35;
@@ -78,13 +78,14 @@ public class GameManager : MonoBehaviour
 
     private void Update() //da reintegrare poi il gamestatus una volta che si hanno tutti i pezzi
     {
+        
         if (status == GameStatus.GamePaused)
         {
             Time.timeScale = 0.0f;
 
         }
         else Time.timeScale = 1.0f;
-            GitGud();
+           
 
         if (status == GameStatus.GameRunning)
         {
@@ -255,14 +256,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void GitGud()
-    { if (currentEnergy <= 0f)
-        {
-            losePanel.gameObject.SetActive(true);
-            PlayerMovement.instance.gameObject.SetActive(false);
-            Ball.instance.gameObject.SetActive(false);
-            status = GameStatus.GamePaused;
-        }
-    }
+    
 
 }

@@ -36,7 +36,7 @@ public class Ball : MonoBehaviour
     [SerializeField] float rotationSpeed = 10f;
     public float maxAngle;
 
-    Animator animator;
+   
 
 
     //public static event Action <Vector2> OnMouseClick;
@@ -70,7 +70,11 @@ public class Ball : MonoBehaviour
         ballSpeed = rb.linearVelocity.magnitude; //per vedere la speed in inspector
         lastVelocity = rb.linearVelocity;
 
-       
+        if (GameManager.instance.reset == true)
+        {
+            transform.position = startPos;
+        }
+
         if (launchPivot != null) //comando lancio pallina
         {
 
@@ -85,10 +89,11 @@ public class Ball : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.Space) && GameManager.instance.status == GameStatus.GameStopped)
             {
+                GameManager.instance.reset = false;
                 StopAllCoroutines();
                 Launch();
                 launchPivot.SetActive(false);
-
+                
                 GameManager.instance.status = GameStatus.GameRunning;
 
 

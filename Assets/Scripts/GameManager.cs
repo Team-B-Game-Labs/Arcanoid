@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject secondaryBall;
 
     [Header("BallSpeed")]
-    [SerializeField] float normalSpeed;
-    [SerializeField] float fasterSpeed;
-    [SerializeField] float overflowSpeed;
+    [SerializeField] float normalSpeed = 8f;
+    [SerializeField] float fasterSpeed = 13f;
+    [SerializeField] float overflowSpeed = 20f;
 
     public GameStatus status;
     [SerializeField] int Energy = 35;
@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
     public int maxEnergy = 120;
     public bool canDamage;
     bool overflowConsume;
-    float timer = 0;
+    public float timer = 0;
 
-
+    public bool reset;
 
 
     private void Awake()

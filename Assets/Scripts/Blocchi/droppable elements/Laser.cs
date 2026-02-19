@@ -11,7 +11,7 @@ public class Laser : MonoBehaviour
     [SerializeField] GameObject laserObject;
     Ray ray;
     RaycastHit hit;
-    Vector3 addY = new Vector3(0, 3.5f, 0);
+    Vector3 addY = new Vector3(0, 3.4f, 0);
 
     
     Transform parent;

@@ -3787,7 +3787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad403299ddb61e48b6b0185d1390ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  totalBlock: 0
   Level: []
+  Boss: []
+  spawnPoint: {fileID: 0}
 --- !u!4 &1140027250
 Transform:
   m_ObjectHideFlags: 0
@@ -4933,11 +4936,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   ball: {fileID: 777607827}
   secondaryBall: {fileID: 3623998421498467733, guid: e69fbf459c529d24eb877d21ae64055d, type: 3}
+  normalSpeed: 8
+  fasterSpeed: 13
+  overflowSpeed: 20
   status: 0
   Energy: 50
   currentEnergy: 0
   maxEnergy: 120
   canDamage: 0
+  timer: 0
+  reset: 0
 --- !u!114 &1888029096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4952,11 +4960,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   ball: {fileID: 0}
   secondaryBall: {fileID: 0}
+  normalSpeed: 8
+  fasterSpeed: 13
+  overflowSpeed: 20
   status: 0
   Energy: 0
   currentEnergy: 0
   maxEnergy: 120
   canDamage: 0
+  timer: 0
+  reset: 0
 --- !u!1 &2028744350
 GameObject:
   m_ObjectHideFlags: 0

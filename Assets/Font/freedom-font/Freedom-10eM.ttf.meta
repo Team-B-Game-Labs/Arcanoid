@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f9039fb122d06754aaa5a99e9579222b
+guid: e5645576d69258145abcf7384b06b068
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Gardion
+  - FREEDOM
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

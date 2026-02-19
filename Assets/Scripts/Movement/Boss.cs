@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    public static Boss instance;
 
     [SerializeField] int maxHp;
     public float currentHp;
@@ -22,6 +23,13 @@ public class Boss : MonoBehaviour
 
     private void Awake()
     {
+        if(instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        instance = this;
+
         timerBullet = 0;
         timerBall = 0;
         spriteRenderer = GetComponent<SpriteRenderer>();

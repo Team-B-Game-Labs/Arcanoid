@@ -76,12 +76,13 @@ public class GameManager : MonoBehaviour
 
     private void Update() //da reintegrare poi il gamestatus una volta che si hanno tutti i pezzi
     {
-        //if (status == GameStatus.GamePaused)
-        //{
-        //    Time.timeScale = 0.0f;
+        if (status == GameStatus.GamePaused)
+        {
+            Time.timeScale = 0.0f;
 
-        //}
-        //else Time.timeScale = 1.0f;
+        }
+        else Time.timeScale = 1.0f;
+
         if (status == GameStatus.GameRunning)
         {
             timer += Time.deltaTime;

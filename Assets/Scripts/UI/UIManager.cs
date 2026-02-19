@@ -6,13 +6,26 @@ using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
+
     [SerializeField] TMP_Text score;
     [SerializeField] Image energyFillAmounth;
     int currentScore;
-
+    [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject tutorial1;
     [SerializeField] GameObject tutorial2;
     [SerializeField] GameObject tutorial3;
+
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        instance = this;
+    }
     private void Start()
     {
         score.text = currentScore.ToString();
@@ -72,33 +85,46 @@ public class UIManager : MonoBehaviour
 
     public void Tutorial()
     {
-        if (tutorial1 == true)
+        if (tutorial1 != null)
         {
             if (Input.GetKey(KeyCode.Space))
             {
                 tutorial2.gameObject.SetActive(true);
-                tutorial1.gameObject.SetActive(false);
+                Destroy(tutorial1);
 
 
             }
-            return;
+            
         }
-        if (tutorial2 == true)
+        if (tutorial2 != null)
         {
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 tutorial3.gameObject.SetActive(true);
-                tutorial2.gameObject.SetActive(false);
+                Destroy (tutorial2);
             }
             return ;
         }
-        if (tutorial3 == true)
+        if (tutorial3 != null)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                tutorial3.gameObject.SetActive(false);
+               Destroy(tutorial3);
             }
             return;
         }
+
+    }
+    public void OpenPauseMenu()
+    {
+        pauseMenu.SetActive(true);
+        GameManager.instance.status = GameStatus.GamePaused;
+    }
+
+    public void ClosePauseMenu()
+    {
+        if (pauseMenu == true)
+            pauseMenu.SetActive(false);
+        GameManager.instance.status = GameStatus.GameRunning;
     }
 }

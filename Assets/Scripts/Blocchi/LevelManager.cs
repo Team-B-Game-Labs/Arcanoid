@@ -54,9 +54,9 @@ public class LevelManager : MonoBehaviour
             currentLevel = null;
 
             currentLevel = Instantiate(Level[Random.Range(0, Level.Count)], transform);
-            GameManager.instance.reset = true; 
-            
             bossLevel++;
+            GameManager.instance.reset = true;
+            GameManager.instance.status = GameStatus.GameStopped;
         }
 
         if (currentBlock <= 0 && bossLevel >= 3)

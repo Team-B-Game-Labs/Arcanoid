@@ -1282,6 +1282,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 195908392}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ClosePauseMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1730171196}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -2163,7 +2175,7 @@ Transform:
   m_GameObject: {fileID: 826709311}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2936,11 +2948,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad403299ddb61e48b6b0185d1390ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  totalBlock: 10
+  totalBlock: 12
   Level:
   - {fileID: 6175258871808507578, guid: 3d54325d4d4288744882adac87e25427, type: 3}
-  - {fileID: 4874943245066204682, guid: cd5ab7bd1cd358c499077263a9f37e0c, type: 3}
-  - {fileID: 4874943245066204682, guid: c407a50b591645246b2b5d0c21a083f0, type: 3}
   Boss: []
   spawnPoint: {fileID: 826709311}
 --- !u!4 &1140027250

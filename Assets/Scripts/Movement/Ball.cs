@@ -1,10 +1,7 @@
 using System.Collections;
 
-
-
-using System;
 using UnityEngine;
-using Unity.VisualScripting;
+
 
 
 
@@ -114,13 +111,13 @@ public class Ball : MonoBehaviour
 
         }
 
-        if (GameManager.instance.currentEnergy >= 100)
-        {
-            spriteRenderer.material = overflow;
+        //if (GameManager.instance.currentEnergy >= 100)
+        //{
+        //    spriteRenderer.material = overflow;
 
-        }
-        else if (canRedirect == true) spriteRenderer.material = redirectable;
-        else spriteRenderer.material = normal;
+        //}
+        //else if (canRedirect == true) spriteRenderer.material = redirectable;
+        //else spriteRenderer.material = normal;
         
           
         

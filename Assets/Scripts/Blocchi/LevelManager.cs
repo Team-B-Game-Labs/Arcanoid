@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     int random;
     private GameObject currentLevel;
     [SerializeField] GameObject spawnPoint;
+    
 
     private void Start()
     {
@@ -43,7 +44,7 @@ public class LevelManager : MonoBehaviour
     private void LevelChanger()
     {
         currentBlock--;
-        if (currentBlock <= 0 && bossLevel != 3)
+        if (currentBlock <= 0 && bossLevel < 2)
         {
             currentBlock = totalBlock;
 
@@ -53,15 +54,19 @@ public class LevelManager : MonoBehaviour
 
             currentLevel = null;
 
+            
             currentLevel = Instantiate(Level[random], new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, spawnPoint.transform.position.z), transform.localRotation, transform);
+            
+            GameManager.instance.reset = true;
 
+            GameManager.instance.status = GameStatus.GameStopped;
             bossLevel++;
         }
 
-        if (currentBlock <= 0 && bossLevel >= 3)
+        if (currentBlock <= 0 && bossLevel >= 2)
         {
+            SceneManager.LoadScene(2);
             bossLevel = 0; 
-            SceneManager.SetActiveScene(Boss[Random.Range(0, Boss.Count)]);
             GameManager.instance.reset = true;
             GameManager.instance.status = GameStatus.GameStopped;
         }

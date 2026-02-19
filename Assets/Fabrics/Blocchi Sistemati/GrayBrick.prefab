@@ -134,3 +134,5 @@ MonoBehaviour:
   - {fileID: 7360311079061833816, guid: e63282be1e6b03b44aeb0a8f18f7a850, type: 3}
   brokenTexture:
   - {fileID: 2100000, guid: eb1ee5f28ceaa8340b80d8bb875e2fd4, type: 2}
+  - {fileID: 2100000, guid: eb1ee5f28ceaa8340b80d8bb875e2fd4, type: 2}
+  - {fileID: 2100000, guid: eb1ee5f28ceaa8340b80d8bb875e2fd4, type: 2}

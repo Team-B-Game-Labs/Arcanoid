@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     private int bossLevel;
     int random;
     private GameObject currentLevel;
-
+    [SerializeField] GameObject spawnPoint;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
         {
             random = Random.Range(0, Level.Count);
 
-            currentLevel = Instantiate(Level[random], transform);
+            currentLevel = Instantiate(Level[random],  new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, spawnPoint.transform.position.z),transform.localRotation, transform);
 
             
 
@@ -53,9 +53,8 @@ public class LevelManager : MonoBehaviour
 
             currentLevel = null;
 
-            currentLevel = Instantiate(Level[Random.Range(0, Level.Count)], transform);
-            GameManager.instance.reset = true; 
-            
+            currentLevel = Instantiate(Level[random], new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, spawnPoint.transform.position.z), transform.localRotation, transform);
+
             bossLevel++;
         }
 

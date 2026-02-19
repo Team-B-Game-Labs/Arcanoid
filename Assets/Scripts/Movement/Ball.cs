@@ -16,9 +16,9 @@ public class Ball : MonoBehaviour
     [SerializeField] private float force = 5.0f;
     [SerializeField] GameObject launchPivot;
     public float targetSpeed = 8f;
-    [SerializeField] Sprite normal;
-    [SerializeField] Sprite redirectable;
-    [SerializeField] Sprite overflow;
+    [SerializeField] Material normal;
+    [SerializeField] Material redirectable;
+    [SerializeField] Material overflow;
     public int ballDamage;
     public Vector3 velocity;
     public float ballSpeed;
@@ -116,11 +116,11 @@ public class Ball : MonoBehaviour
 
         if (GameManager.instance.currentEnergy >= 100)
         {
-            spriteRenderer.sprite = overflow;
+            spriteRenderer.material = overflow;
 
         }
-        else if (canRedirect == true) spriteRenderer.sprite = redirectable;
-        else spriteRenderer.sprite = normal;
+        else if (canRedirect == true) spriteRenderer.material = redirectable;
+        else spriteRenderer.material = normal;
         
           
         

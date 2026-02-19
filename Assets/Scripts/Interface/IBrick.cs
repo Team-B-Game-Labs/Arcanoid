@@ -5,7 +5,7 @@ public interface IBrick
 {
     public void TakeDamage(int damage);
 
-    public void Destroy();
+    public void BrickDestroy();
 
 
 }

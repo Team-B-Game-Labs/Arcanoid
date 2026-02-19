@@ -92,7 +92,7 @@ public abstract class Brick : MonoBehaviour, IBrick
 
         if (currentHealth <= 0)
         {
-            Destroy();
+            BrickDestroy();
         }
 
         material.material = brokenTexture[texturIndex];
@@ -101,11 +101,12 @@ public abstract class Brick : MonoBehaviour, IBrick
         
     }
 
-    public void Destroy()
+    public void BrickDestroy()
     {
         EventAction_OnBrickDestroyed();
         Effect();
-        Destroy(this);
+        Destroy(gameObject);
+        Debug.Log("blocco distrutto");
     }
 
     

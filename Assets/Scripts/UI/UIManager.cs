@@ -49,12 +49,16 @@ public class UIManager : MonoBehaviour
 
     public void SetScore(int scoreValue)
     {
+        if (score == null) return;
+
         currentScore =+ scoreValue;
         score.text = currentScore.ToString();
     }
 
     public void FillEnergy()
     {
+        if(energyFillAmounth == null) return;
+        
         energyFillAmounth.fillAmount = GameManager.instance.currentEnergy / GameManager.instance.maxEnergy;
         if(energyFillAmounth.fillAmount <= 0.8f)
         {
@@ -63,35 +67,36 @@ public class UIManager : MonoBehaviour
         else
             energyFillAmounth.color = Color.blue;
 
+
     }
 
     public void Tutorial()
     {
-        if (tutorial1 != null)
+        if (tutorial1 == true)
         {
             if (Input.GetKey(KeyCode.Space))
             {
                 tutorial2.gameObject.SetActive(true);
-                Destroy(tutorial1);
+                tutorial1.gameObject.SetActive(false);
 
 
             }
             return;
         }
-        if (tutorial2 != null)
+        if (tutorial2 == true)
         {
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 tutorial3.gameObject.SetActive(true);
-                Destroy(tutorial2);
+                tutorial2.gameObject.SetActive(false);
             }
             return ;
         }
-        if (tutorial3 != null)
+        if (tutorial3 == true)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Destroy(tutorial3);
+                tutorial3.gameObject.SetActive(false);
             }
             return;
         }

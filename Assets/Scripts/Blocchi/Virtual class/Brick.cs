@@ -105,7 +105,7 @@ public abstract class Brick : MonoBehaviour, IBrick
     {
         EventAction_OnBrickDestroyed();
         Effect();
-        Destroy(gameObject);
+        Destroy(this);
     }
 
     

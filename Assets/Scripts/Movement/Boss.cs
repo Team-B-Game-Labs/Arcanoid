@@ -46,6 +46,7 @@ public class Boss : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.status != GameStatus.GameRunning) return;
         timerBullet += Time.deltaTime;
         timerBall += Time.deltaTime;
 

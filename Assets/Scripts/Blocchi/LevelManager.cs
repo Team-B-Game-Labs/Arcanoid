@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
             currentLevel = null;
 
             currentLevel = Instantiate(Level[Random.Range(0, Level.Count)], transform);
-            //GameManager.instance.reset = true; ;
+            GameManager.instance.reset = true; 
             
             bossLevel++;
         }
@@ -63,6 +63,8 @@ public class LevelManager : MonoBehaviour
         {
             bossLevel = 0; 
             SceneManager.SetActiveScene(Boss[Random.Range(0, Boss.Count)]);
+            GameManager.instance.reset = true;
+            GameManager.instance.status = GameStatus.GameStopped;
         }
         
     }

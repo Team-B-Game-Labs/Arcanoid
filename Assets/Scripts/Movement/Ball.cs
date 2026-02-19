@@ -89,11 +89,11 @@ public class Ball : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.Space) && GameManager.instance.status == GameStatus.GameStopped)
             {
-                GameManager.instance.reset = false;
                 StopAllCoroutines();
                 Launch();
                 launchPivot.SetActive(false);
                 
+                GameManager.instance.reset = false;
                 GameManager.instance.status = GameStatus.GameRunning;
 
 

@@ -10,9 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image energyFillAmounth;
     int currentScore;
 
-    [SerializeField] Image tutorial1;
-    [SerializeField] Image tutorial2;
-    [SerializeField] Image tutorial3;
+    [SerializeField] GameObject tutorial1;
+    [SerializeField] GameObject tutorial2;
+    [SerializeField] GameObject tutorial3;
     private void Start()
     {
         score.text = currentScore.ToString();
@@ -36,6 +36,11 @@ public class UIManager : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        Tutorial();
+    }
+
     private void SetCollectableUI(int dropNumber)
     {
         
@@ -58,5 +63,37 @@ public class UIManager : MonoBehaviour
         else
             energyFillAmounth.color = Color.blue;
 
+    }
+
+    public void Tutorial()
+    {
+        if (tutorial1 != null)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                tutorial2.gameObject.SetActive(true);
+                Destroy(tutorial1);
+
+
+            }
+            return;
+        }
+        if (tutorial2 != null)
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                tutorial3.gameObject.SetActive(true);
+                Destroy(tutorial2);
+            }
+            return ;
+        }
+        if (tutorial3 != null)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Destroy(tutorial3);
+            }
+            return;
+        }
     }
 }

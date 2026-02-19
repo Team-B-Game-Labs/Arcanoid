@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header("DropBall")]
     [SerializeField] GameObject ball;
-    [SerializeField] GameObject secondaryBall;
+    [SerializeField] public GameObject secondaryBall;
 
     [Header("BallSpeed")]
     [SerializeField] float normalSpeed = 8f;

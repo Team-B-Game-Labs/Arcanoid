@@ -30,7 +30,7 @@ public class Boss : MonoBehaviour
 
     private void Start()
     {
-
+        PlayerMovement.instance.transform.localScale -= new Vector3(0.1f,0.1f,0.1f);
         currentHp = maxHp;
     }
     private void OnCollisionEnter(Collision collision)
@@ -62,6 +62,7 @@ public class Boss : MonoBehaviour
 
         if (timerBall >= 15)
         {
+            Instantiate(secondaryBall, transform);
             Instantiate(secondaryBall, transform);
             timerBall = 0;
         }

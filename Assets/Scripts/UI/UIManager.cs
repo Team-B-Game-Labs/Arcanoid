@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image energyFillAmounth;
     int currentScore;
 
+    [SerializeField] Image tutorial1;
+    [SerializeField] Image tutorial2;
+    [SerializeField] Image tutorial3;
     private void Start()
     {
         score.text = currentScore.ToString();
@@ -30,6 +34,7 @@ public class UIManager : MonoBehaviour
         EnergyBall.OnTakeEnergyBall -= FillEnergy;
         Bullet.onBulletHit -= FillEnergy;
     }
+
 
     private void SetCollectableUI(int dropNumber)
     {

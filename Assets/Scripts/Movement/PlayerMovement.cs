@@ -44,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
             material.sprite = invincible;
         }
         else { material.sprite = normal; }
+
+        if(GameManager.instance.reset == true)
+        {
+            transform.position = startPos;
+        }
     }
     private void FixedUpdate()
     {

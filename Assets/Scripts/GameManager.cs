@@ -15,16 +15,22 @@ public class GameManager : MonoBehaviour
 
     [Header("DropBall")]
     [SerializeField] GameObject ball;
-    [SerializeField] GameObject secondaryBall;
+    [SerializeField] public GameObject secondaryBall;
+
+    [Header("BallSpeed")]
+    [SerializeField] float normalSpeed = 8f;
+    [SerializeField] float fasterSpeed = 13f;
+    [SerializeField] float overflowSpeed = 20f;
 
     public GameStatus status;
     [SerializeField] int Energy = 35;
     public int currentEnergy;
     public int maxEnergy = 120;
     public bool canDamage;
+    bool overflowConsume;
+    public float timer = 0;
 
-
-
+    public bool reset;
 
 
     private void Awake()
@@ -38,7 +44,7 @@ public class GameManager : MonoBehaviour
 
         canDamage = true;
 
-        
+
 
     }
     private void OnEnable()
@@ -62,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        overflowConsume = false;
         currentEnergy = Energy;
         StartGame();
         Debug.Log(status);
@@ -75,20 +82,58 @@ public class GameManager : MonoBehaviour
 
         //}
         //else Time.timeScale = 1.0f;
-        while(status == GameStatus.GameRunning)
+        if (status == GameStatus.GameRunning)
         {
-            float timer = 0;
             timer += Time.deltaTime;
-            if ((timer % 2) == 0)
+
+            if (timer >= 1)
             {
 
                 currentEnergy -= 1;
 
-
+                timer = 0;
 
                 Debug.Log(currentEnergy);
-                
+                return;
+
             }
+
+            if (currentEnergy >= 120)
+            {
+                overflowConsume = true;
+
+
+            }
+
+            if (overflowConsume)
+            {
+                StartCoroutine(OverflowConsume());
+                return;
+            }
+
+        }
+
+        while (status == GameStatus.GameRunning)
+        {
+            if (currentEnergy <= 50)
+            {
+                Ball.instance.targetSpeed = normalSpeed;
+                Ball.instance.ballDamage = 1;
+            }
+
+            if (currentEnergy <= 100 && currentEnergy > 50)
+            {
+                Ball.instance.targetSpeed = fasterSpeed;
+                Ball.instance.ballDamage = 2;
+            }
+
+            if (currentEnergy <= 120 && currentEnergy > 100)
+            {
+                Ball.instance.targetSpeed = overflowSpeed;
+                Ball.instance.ballDamage = 3;
+            }
+
+
             return;
 
         }
@@ -96,6 +141,8 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+
     }
 
     public void StartGame()
@@ -185,5 +232,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         canDamage = true;
+    }
+
+    IEnumerator OverflowConsume()
+    {
+        timer += Time.deltaTime * 10;
+        if (currentEnergy <= 100)
+        {
+            overflowConsume = false;
+
+            yield return null;
+        }
+
     }
 }

@@ -5,7 +5,7 @@ public class SecondaryBall : MonoBehaviour
 {
     [SerializeField] float speed = 8f;
     public int ballDamage = 1;
-    [SerializeField] float timeBeforeDespawn = 10f;
+    [SerializeField] float timeBeforeDespawn = 6f;
     public int bounceCounter = 0;
     bool canDespawn;
 

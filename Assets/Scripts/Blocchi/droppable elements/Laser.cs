@@ -11,7 +11,7 @@ public class Laser : MonoBehaviour
     [SerializeField] GameObject laserObject;
     Ray ray;
     RaycastHit hit;
-    Vector3 addY = new Vector3(0, 3.5f, 0);
+    Vector3 addY = new Vector3(0, 3.4f, 0);
 
     
     Transform parent;
@@ -34,7 +34,7 @@ public class Laser : MonoBehaviour
         Vector3 plusY = new Vector3(parent.transform.position.x, parent.transform.position.y, parent.transform.position.z);
         if(parent.transform.position.y >= 0.05)
         {
-            Instantiate(laserObject, new Vector3(plusY.x, plusY.y -= (addY.y * 2), plusY.z), transform.localRotation, parent);
+            Instantiate(laserObject, new Vector3(plusY.x, plusY.y -= (addY.y * 2), plusY.z), Quaternion.Euler(0,0,180), parent);
             
         }
 

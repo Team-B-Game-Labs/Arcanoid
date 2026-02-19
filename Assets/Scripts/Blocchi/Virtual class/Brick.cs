@@ -1,5 +1,4 @@
  using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Brick : MonoBehaviour, IBrick
@@ -88,12 +87,21 @@ public abstract class Brick : MonoBehaviour, IBrick
     {
         currentHealth -= damage;
 
-        texturIndex++;
-
         if (currentHealth <= 0)
         {
             BrickDestroy();
         }
+
+        if (texturIndex == 0)
+        {
+            texturIndex++;
+        }
+        else if (texturIndex == 1)
+        {
+            texturIndex++;
+        }
+        else if (texturIndex == 2) { texturIndex++; }
+
 
         material.material = brokenTexture[texturIndex];
         

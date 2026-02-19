@@ -1,8 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System;
-using Unity.VisualScripting;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -28,7 +27,7 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-        score.text = currentScore.ToString();
+        //score.text = currentScore.ToString();
         
     }
     private void OnEnable()

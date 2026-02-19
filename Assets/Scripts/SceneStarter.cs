@@ -5,7 +5,7 @@ public class SceneStarter : MonoBehaviour
 {
     public void PlayButtonsStartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitButtonStartGame()
@@ -17,6 +17,6 @@ public class SceneStarter : MonoBehaviour
     
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

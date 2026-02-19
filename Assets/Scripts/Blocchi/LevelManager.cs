@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private int totalBlock;
-     private int currentBlock;
+    [SerializeField] private int currentBlock;
     [SerializeField] List<GameObject> Level = new List<GameObject>();
     [SerializeField] List<Scene> Boss = new List<Scene>();
     private int bossLevel;
@@ -54,7 +54,10 @@ public class LevelManager : MonoBehaviour
             currentLevel = null;
 
             currentLevel = Instantiate(Level[Random.Range(0, Level.Count)], transform);
-            //GameManager.instance.reset = true; ;
+
+            GameManager.instance.status = GameStatus.GameStopped;
+
+            GameManager.instance.reset = true;
             
             bossLevel++;
         }

@@ -4,20 +4,26 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private int totalBlock;
-    [SerializeField] private int currentBlock;
+     private int currentBlock;
     [SerializeField] List<GameObject> Level = new List<GameObject>();
     [SerializeField] List<Scene> Boss = new List<Scene>();
     private int bossLevel;
-    private GameObject sus;
+    int random;
+    private GameObject currentLevel;
 
 
     private void Start()
     {
         bossLevel = 0;
         currentBlock = totalBlock;
+
         if (Level.Count > 0)
         {
-            Instantiate(Level[Random.Range(0, Level.Count)], transform);
+            random = Random.Range(0, Level.Count);
+
+            currentLevel = Instantiate(Level[random], transform);
+
+            
 
         }
 
@@ -41,14 +47,21 @@ public class LevelManager : MonoBehaviour
         {
             currentBlock = totalBlock;
 
-            Instantiate(Level[Random.Range(0, Level.Count)], transform);
+            Destroy(currentLevel);
+
+            random = Random.Range(0, Level.Count);
+
+            currentLevel = null;
+
+            currentLevel = Instantiate(Level[Random.Range(0, Level.Count)], transform);
+            //GameManager.instance.reset = true; ;
             
             bossLevel++;
         }
 
-        if (currentBlock <= 0 && bossLevel == 3)
+        if (currentBlock <= 0 && bossLevel >= 3)
         {
-            bossLevel = 0;
+            bossLevel = 0; 
             SceneManager.SetActiveScene(Boss[Random.Range(0, Boss.Count)]);
         }
         

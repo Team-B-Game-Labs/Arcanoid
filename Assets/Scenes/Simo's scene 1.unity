@@ -1261,7 +1261,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6729290d3a8a4bb42886395e7ea6c7ea, type: 2}
+  - {fileID: 2100000, guid: 434b8dc74a1aa9545844f61102345e89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1948,7 +1948,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   totalBlock: 10
-  currentBlock: 10
   Level:
   - {fileID: 7545071573107840965, guid: 4d2497a26cccc39458f5f9315eb3373a, type: 3}
   - {fileID: 6690567222648398717, guid: e77019c8cc077b84bb1f6d15f16d5e96, type: 3}
@@ -1963,7 +1962,7 @@ Transform:
   m_GameObject: {fileID: 1140027248}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0.9, z: 0.15}
+  m_LocalPosition: {x: 0.12, y: 3.07, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2282,7 +2281,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1888029094}
-  - component: {fileID: 1888029096}
   - component: {fileID: 1888029095}
   m_Layer: 0
   m_Name: GameManager
@@ -2322,25 +2320,6 @@ MonoBehaviour:
   secondaryBall: {fileID: 3623998421498467733, guid: e69fbf459c529d24eb877d21ae64055d, type: 3}
   status: 0
   Energy: 50
-  currentEnergy: 0
-  maxEnergy: 120
-  canDamage: 0
---- !u!114 &1888029096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1888029093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 153c70dcf53d658479a2c8d0e6f5596e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  ball: {fileID: 0}
-  secondaryBall: {fileID: 0}
-  status: 0
-  Energy: 0
   currentEnergy: 0
   maxEnergy: 120
   canDamage: 0

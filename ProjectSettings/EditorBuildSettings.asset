@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Inizio.unity
     guid: d1ecee6584ec8d2489dcb0e6ba1b02eb
+  - enabled: 1
+    path: Assets/Scenes/Simo's scene 1.unity
+    guid: ed777192a1db09d4eac5d02ae7c81158
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

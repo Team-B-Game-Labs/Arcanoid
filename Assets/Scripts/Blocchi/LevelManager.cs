@@ -48,6 +48,8 @@ public class LevelManager : MonoBehaviour               //Willy
         {
             currentBlock = totalBlock;
 
+
+            
             Destroy(currentLevel);
 
             random = Random.Range(0, Level.Count);

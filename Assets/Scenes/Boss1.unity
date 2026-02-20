@@ -1251,7 +1251,10 @@ PrefabInstance:
       value: ReturnToMainMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8068921971923257131, guid: 9f672d755571afa428d7cc40ee8e3a38, type: 3}
+    - {fileID: 5066408571238408083, guid: 9f672d755571afa428d7cc40ee8e3a38, type: 3}
+    - {fileID: 4596705210285723030, guid: 9f672d755571afa428d7cc40ee8e3a38, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f672d755571afa428d7cc40ee8e3a38, type: 3}
@@ -1697,7 +1700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4245dd56f3de24a8a3f93d095c7bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Victory
-  victoryPanel: {fileID: 684961681435295313, guid: a6b5c73339860f541af83c0567ad1118, type: 3}
+  victoryPanel: {fileID: 1849759644}
 --- !u!4 &1256205307
 Transform:
   m_ObjectHideFlags: 0
@@ -1962,6 +1965,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1849759644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3376109521945699251, guid: 9f672d755571afa428d7cc40ee8e3a38, type: 3}
+  m_PrefabInstance: {fileID: 868953212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2028744350
 GameObject:
   m_ObjectHideFlags: 0

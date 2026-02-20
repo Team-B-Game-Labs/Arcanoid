@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 689951442092413314}
   m_Layer: 9
   m_Name: SecondaryBall
-  m_TagString: Untagged
+  m_TagString: Drops
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

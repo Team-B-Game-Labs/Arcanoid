@@ -52,6 +52,10 @@ public class LevelManager : MonoBehaviour               //Willy
             
             Destroy(currentLevel);
 
+            GameObject[] gos = GameObject.FindGameObjectsWithTag("Drops");
+            foreach (GameObject go in gos)
+                Destroy(go);
+
             random = Random.Range(0, Level.Count);
 
             currentLevel = null;
@@ -67,7 +71,7 @@ public class LevelManager : MonoBehaviour               //Willy
 
         if (currentBlock <= 0 && bossLevel >= 2)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(Random.Range(2,5));
             DontDestroyOnLoad(GameManager.instance.gameObject);
             
             bossLevel = 0;

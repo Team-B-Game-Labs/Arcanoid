@@ -240,7 +240,7 @@ public class GameManager : MonoBehaviour                // Willy & Simone
 
     IEnumerator invincibTake()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(5f);
 
         canDamage = true;
     }

@@ -299,8 +299,8 @@ Transform:
   m_GameObject: {fileID: 3098692079671493181}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.8348, y: 4.0189, z: -0.17005}
-  m_LocalScale: {x: 2.0432363, y: 0.518754, z: 0.5}
+  m_LocalPosition: {x: 0.9479, y: 4.0022, z: -0.17005}
+  m_LocalScale: {x: 2.0366979, y: 0.5233709, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2945507242046490569}
@@ -390,8 +390,8 @@ Transform:
   m_GameObject: {fileID: 4750406316615164668}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.3607, y: 8.8296, z: -0.17005}
-  m_LocalScale: {x: 2.293816, y: 0.5144202, z: 0.5}
+  m_LocalPosition: {x: -5.3026, y: 8.7976, z: -0.17005}
+  m_LocalScale: {x: 2.3142312, y: 0.51277405, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2945507242046490569}
@@ -481,8 +481,8 @@ Transform:
   m_GameObject: {fileID: 8352170758314362340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.3801, y: -0.8614, z: -0.17005}
-  m_LocalScale: {x: 2.3000014, y: 0.39095935, z: 0.5}
+  m_LocalPosition: {x: -5.3222, y: -0.8625, z: -0.17005}
+  m_LocalScale: {x: 2.3204715, y: 0.38970828, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2945507242046490569}
@@ -572,8 +572,8 @@ Transform:
   m_GameObject: {fileID: 8783385009276806628}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -11.5633, y: 4.0355, z: -0.17005}
-  m_LocalScale: {x: 1.9790772, y: 0.518754, z: 0.5}
+  m_LocalPosition: {x: -11.5604, y: 4.0188, z: -0.17005}
+  m_LocalScale: {x: 1.9727442, y: 0.5233709, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2945507242046490569}
@@ -674,4 +674,4 @@ Transform:
   - {fileID: 8082247294668197891}
   - {fileID: 3950716875806645627}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -6.977, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

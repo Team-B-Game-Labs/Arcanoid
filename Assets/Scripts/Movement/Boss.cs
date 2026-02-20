@@ -58,9 +58,9 @@ public class Boss : MonoBehaviour               //Simone
         timerBullet += Time.deltaTime;
         timerBall += Time.deltaTime;
 
-        if (timerBullet >= 10)
+        if (timerBullet >= 12)
         {
-            Instantiate(bullet, transform);
+            Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, -0.3f), transform.rotation);
             timerBullet = 0;
         }
 
@@ -71,8 +71,8 @@ public class Boss : MonoBehaviour               //Simone
 
         if (timerBall >= 15)
         {
-            Instantiate(secondaryBall, transform);
-            Instantiate(secondaryBall, transform);
+            Instantiate(secondaryBall, new Vector3(transform.position.x, transform.position.y, -0.3f), transform.rotation);
+            Instantiate(secondaryBall, new Vector3(transform.position.x, transform.position.y, -0.3f), transform.rotation);
             timerBall = 0;
         }
 

@@ -1621,7 +1621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1ff68a00013a741abbac88da58b7ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundGames
-  scrollSpeed: 0.5
+  scrollSpeed: 0.1
 --- !u!1 &1376342980
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GrayBrick : Brick
+public class GrayBrick : Brick              //Willy
 {
     private GameObject energyBall;
 

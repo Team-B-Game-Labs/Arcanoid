@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class EnergyBall : Drops
+public class EnergyBall : Drops         //Simone
 {
     public static event Action OnTakeEnergyBall;
     Rigidbody rb;

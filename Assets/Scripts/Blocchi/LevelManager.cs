@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoBehaviour               //Willy
 {
     [SerializeField] private int totalBlock;
      private int currentBlock;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Victory : MonoBehaviour
+public class Victory : MonoBehaviour                    //Simone
 {
     [SerializeField] GameObject victoryPanel;
 

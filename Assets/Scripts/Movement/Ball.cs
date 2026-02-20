@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviour               //Simone
 {
 
     public static Ball instance;

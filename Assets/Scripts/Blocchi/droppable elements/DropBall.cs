@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class DropBall : Drops
+public class DropBall : Drops   //Simone
 {
 
     public static event Action onDropBallTake;

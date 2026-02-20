@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Lose : MonoBehaviour
+public class Lose : MonoBehaviour   //Simone
 {
     [SerializeField] GameObject losePanel;
 

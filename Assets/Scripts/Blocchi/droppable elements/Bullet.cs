@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Bullet : Drops
+public class Bullet : Drops             //Simone
 {
     public static event Action onBulletHit;
     Rigidbody rb;

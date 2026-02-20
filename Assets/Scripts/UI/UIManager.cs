@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System;
 
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour          //Willy & Simone
 {
     public static UIManager instance;
 

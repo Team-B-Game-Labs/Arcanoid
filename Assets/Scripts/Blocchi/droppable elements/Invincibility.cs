@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class Invincibility : Drops
+public class Invincibility : Drops              //Simone
 {
     public static event Action onInvincibilityTake;
 

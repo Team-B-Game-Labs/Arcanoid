@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class GrowthDrop : Drops
+public class GrowthDrop : Drops             //Simone
 
 {
     public static event Action onGrowthDropTake; 

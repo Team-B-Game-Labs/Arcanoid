@@ -9,7 +9,7 @@ public enum GameStatus
     GamePaused,
     GameStopped,
 }
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour                // Willy & Simone
 {
     public static GameManager instance;
 

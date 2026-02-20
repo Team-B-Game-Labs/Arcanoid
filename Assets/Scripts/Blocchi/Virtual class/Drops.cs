@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 
 
-public abstract class Drops : MonoBehaviour, ICollectable
+public abstract class Drops : MonoBehaviour, ICollectable               //Willy
 {
     enum TypeDrops
     {

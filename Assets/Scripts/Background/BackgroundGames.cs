@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BackgroundMove : MonoBehaviour
+public class BackgroundGames : MonoBehaviour
 {
     public float scrollSpeed = 0.5f;
     private Renderer rend;
@@ -11,12 +11,10 @@ public class BackgroundMove : MonoBehaviour
     }
 
     void Update()
-    { 
+    {
         float offset = Time.time * scrollSpeed;
 
 
-        rend.material.mainTextureOffset = new Vector2(offset, offset-0.03f);
+        rend.material.mainTextureOffset = new Vector2(offset, offset - Random.Range(1, 2));
     }
 }
-
-

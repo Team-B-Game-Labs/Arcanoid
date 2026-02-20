@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 
 public class UIManager : MonoBehaviour
@@ -9,13 +10,14 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] TMP_Text score;
     [SerializeField] Image energyFillAmounth;
-    int currentScore;
+    [SerializeField] Image energyOverflow;
+     public int currentScore;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject tutorial1;
     [SerializeField] GameObject tutorial2;
     [SerializeField] GameObject tutorial3;
 
-
+    [SerializeField] Button bounceWindow;
     private void Awake()
     {
         if (instance != null)
@@ -27,7 +29,7 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-        //score.text = currentScore.ToString();
+        score.text = currentScore.ToString();
         
     }
     private void OnEnable()
@@ -35,7 +37,7 @@ public class UIManager : MonoBehaviour
         Brick.OnSetScorePoint += SetScore;
         Drops.OnCollect += SetCollectableUI;
         EnergyBall.OnTakeEnergyBall += FillEnergy;
-        Bullet.onBulletHit += FillEnergy;
+        
     }
 
 
@@ -44,12 +46,20 @@ public class UIManager : MonoBehaviour
         Brick.OnSetScorePoint -= SetScore;
         Drops.OnCollect -= SetCollectableUI;
         EnergyBall.OnTakeEnergyBall -= FillEnergy;
-        Bullet.onBulletHit -= FillEnergy;
+        
     }
 
 
     private void Update()
     {
+        if (Ball.instance.canRedirect == true)
+        {
+            bounceWindow.interactable = true;
+            Debug.Log("funzia");
+        }
+        else { bounceWindow.interactable = false; Debug.Log("nonfunzia"); }
+
+        FillEnergy();       //l'ho messo in update sennò non registrava l'energia anche nel tempo
         Tutorial();
     }
 
@@ -65,6 +75,7 @@ public class UIManager : MonoBehaviour
 
         currentScore =+ scoreValue;
         score.text = currentScore.ToString();
+           
     }
 
     public void FillEnergy()
@@ -72,12 +83,18 @@ public class UIManager : MonoBehaviour
         if(energyFillAmounth == null) return;
         
         energyFillAmounth.fillAmount = GameManager.instance.currentEnergy / GameManager.instance.maxEnergy;
-        if(energyFillAmounth.fillAmount <= 0.8f)
-        {
-            energyFillAmounth.color = Color.green;
-        }
-        else
-            energyFillAmounth.color = Color.blue;
+        //if(energyFillAmounth.fillAmount <= 0.8f)
+        //{
+        //    energyFillAmounth.color = Color.green; 
+        //}
+        //else
+        //    energyFillAmounth.color = Color.blue;             qua ho cambiato perché abbiamo già due colori,
+        //                                                              ho dovuto togliere il delegate perché sennò buggava
+
+        if(GameManager.instance.overflowConsume == true )
+            energyOverflow.gameObject.SetActive(true);
+        
+        else energyOverflow.gameObject.SetActive(false);
 
 
     }

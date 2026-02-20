@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4792475df83833e43bcdb76ec5a52a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BluesBrick
-  scoreSet: 0
+  scoreSet: 150
   types: 3
   health: 3
   brikColor: {r: 0, g: 0.060247898, b: 1, a: 1}

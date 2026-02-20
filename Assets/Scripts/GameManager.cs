@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
 
     public GameStatus status;
     [SerializeField] int Energy = 35;
-    public int currentEnergy;
-    public int maxEnergy = 120;
+    public float currentEnergy;
+    public float maxEnergy = 120;
     public bool canDamage;
-    bool overflowConsume;
+    public bool overflowConsume;
     public float timer = 0;
 
     public bool reset;
@@ -76,8 +76,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(status);
     }
 
-    private void Update() //da reintegrare poi il gamestatus una volta che si hanno tutti i pezzi
+    private void Update() 
     {
+
         
         if (status == GameStatus.GamePaused)
         {
@@ -170,7 +171,7 @@ public class GameManager : MonoBehaviour
     {
         if (canDamage == true)
         {
-            currentEnergy -= 20;
+            currentEnergy -= 15;
             Debug.Log(currentEnergy);
         }
     }
@@ -186,7 +187,7 @@ public class GameManager : MonoBehaviour
     {
         if (canDamage == true)
         {
-            currentEnergy -= 35;
+            currentEnergy -= 25;
             Debug.Log(currentEnergy);
         }
     }

@@ -53,9 +53,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //if (GameManager.instance.status == GameStatus.GameRunning)
-        //    Move();
-        // Poi da attivare una volta che il sistema di GeameStatus viene implementato
+        
        if(GameManager.instance.status == GameStatus.GameRunning)
             Move();
 

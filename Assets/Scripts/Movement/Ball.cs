@@ -13,9 +13,9 @@ public class Ball : MonoBehaviour
     [SerializeField] private float force = 5.0f;
     [SerializeField] GameObject launchPivot;
     public float targetSpeed = 8f;
-    //[SerializeField] Material normal;
-    //[SerializeField] Material redirectable;
-    //[SerializeField] Material overflow;
+    [SerializeField] Sprite normal;
+    [SerializeField] Sprite redirectable;
+    [SerializeField] Sprite overflow;
     public int ballDamage;
     public Vector3 velocity;
     public float ballSpeed;
@@ -39,7 +39,7 @@ public class Ball : MonoBehaviour
     //public static event Action <Vector2> OnMouseClick;
 
     bool manualBounceActive;
-    bool canRedirect;
+    public bool canRedirect;
 
     private void Awake()
     {
@@ -58,6 +58,7 @@ public class Ball : MonoBehaviour
         canRedirect = true;
 
         rb = GetComponent<Rigidbody>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         velocity = rb.linearVelocity;
 
         startPos = transform.position;
@@ -67,11 +68,29 @@ public class Ball : MonoBehaviour
         ballSpeed = rb.linearVelocity.magnitude; //per vedere la speed in inspector
         lastVelocity = rb.linearVelocity;
 
+        if (GameManager.instance.currentEnergy >= 100)
+        {
+            spriteRenderer.sprite = overflow;
+
+        }
+        else if (canRedirect == true) spriteRenderer.sprite = redirectable;
+        else spriteRenderer.sprite = normal;
+
         if (GameManager.instance.reset == true)
         {
             transform.position = startPos;
         }
 
+        if (Input.GetMouseButtonDown(0) && canRedirect == true)
+        {
+            manualBounceActive = true;
+            ClickRaycast.instance.OnClickMove();
+            newDirection = ClickRaycast.instance.hitPos - ClickRaycast.instance.transform.position;
+
+            Debug.Log(newDirection);
+
+
+        }
         if (launchPivot != null) //comando lancio pallina
         {
 
@@ -102,27 +121,10 @@ public class Ball : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonDown(0) && canRedirect == true)
-        {
-            manualBounceActive = true;
-            ClickRaycast.instance.OnClickMove();
-            newDirection = ClickRaycast.instance.hitPos - ClickRaycast.instance.transform.position;
-
-            Debug.Log(newDirection);
 
 
-        }
 
-        //if (GameManager.instance.currentEnergy >= 100)
-        //{
-        //    spriteRenderer.material = overflow;
 
-        //}
-        //else if (canRedirect == true) spriteRenderer.material = redirectable;
-        //else spriteRenderer.material = normal;
-        
-          
-        
 
     }
 
@@ -203,7 +205,7 @@ public class Ball : MonoBehaviour
     IEnumerator RebounceCoodlown()
     {
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
 
         canRedirect = true;
 

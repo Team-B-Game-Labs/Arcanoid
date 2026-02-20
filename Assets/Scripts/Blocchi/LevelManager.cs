@@ -67,6 +67,7 @@ public class LevelManager : MonoBehaviour
         {
             SceneManager.LoadScene(2);
             DontDestroyOnLoad(GameManager.instance.gameObject);
+            
             bossLevel = 0;
             GameManager.instance.canDamage = false;
             GameManager.instance.reset = true;

@@ -123,11 +123,13 @@ public class Boss : MonoBehaviour
         if (currentHp <= 120 && energy1)
         {
             Instantiate(energy, transform);
+            Instantiate(energy, transform);
             energy1 = false;
             return;
         }
         if (currentHp <= 90 && energy2)
         {
+            Instantiate(energy, transform);
             Instantiate(energy, transform);
             energy2 = false;
             return;
@@ -135,11 +137,13 @@ public class Boss : MonoBehaviour
         if (currentHp <= 60 && energy3)
         {
             Instantiate(energy, transform);
+            Instantiate(energy, transform);
             energy3 = false;
             return;
         }
         if (currentHp <= 30 && energy4)
         {
+            Instantiate(energy, transform);
             Instantiate(energy, transform);
             energy4 = false;
             return;
